@@ -6,7 +6,7 @@ export const typeOrmCofig: TypeOrmModuleOptions = {
   port: 3306,
   username: 'root',
   password: 'password',
-  database: 'taskmanagment',
+  database: 'task_mangement',
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
   // not recommanded at production mode
   synchronize: true
