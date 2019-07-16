@@ -22,12 +22,10 @@ import { Task } from './task.entity';
 export class TasksController {
   constructor(private tasksService: TasksService) { }
 
-  // @Get()
-  // getTasks(@Query(ValidationPipe) filterDto: GetTasksFilterDto): Task[] {
-  //   return Object.keys(filterDto).length
-  //     ? this.tasksService.getTasksWithFilters(filterDto)
-  //     : this.tasksService.getAllTasks()
-  // }
+  @Get()
+  getTasks(@Query(ValidationPipe) filterDto: GetTasksFilterDto): Promise<Task[]> {
+    return this.tasksService.getTasks(filterDto)
+  }
 
   @Get('/:id')
   getTaskById(@Param('id', ParseIntPipe) id: number): Promise<Task> {
@@ -45,11 +43,11 @@ export class TasksController {
     return this.tasksService.deleteTask(id)
   }
 
-  // @Patch('/:id/status')
-  // updateTaskStatus(
-  //   @Param('id') id: string,
-  //   @Body('status', TaskStatusValidationPipe) status: TaskStatus
-  // ): Task {
-  //   return this.tasksService.updateTask(id, status)
-  // }
+  @Patch('/:id/status')
+  updateTaskStatus(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('status', TaskStatusValidationPipe) status: TaskStatus
+  ): Promise<Task> {
+    return this.tasksService.updateTask(id, status)
+  }
 }
