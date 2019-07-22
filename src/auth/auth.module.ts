@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { UserRepository } from './user.repository'
 import KEYS from '../config/keys'
 import { JwtStrategy } from './jwt.strategy';
+
 @Module({
   imports: [
     PassportModule.register({
@@ -30,4 +31,5 @@ import { JwtStrategy } from './jwt.strategy';
     PassportModule
   ]
 })
+
 export class AuthModule {}
